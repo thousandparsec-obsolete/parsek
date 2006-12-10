@@ -1,0 +1,28 @@
+# - Try to find TPProto library
+# Once done this will define:
+#
+#  TPPROTO_FOUND - system has TPProto library
+#  TPPROTO_INCLUDE_DIR - TPPtoto include directory
+#  TPPROTO_LIBRARY - link this to use TPProto library
+
+FIND_PATH(TPPROTO_INCLUDE_DIR gamelayer.h /usr/include/tpproto /usr/local/include/tpproto)
+
+FIND_LIBRARY(TPPROTO_LIBRARY NAMES tpproto PATHS /usr/lib /usr/local/lib) 
+
+IF (TPPROTO_INCLUDE_DIR AND TPPROTO_LIBRARY)
+   SET(TPPROTO_LIBRARIES ${TPPROTO_LIBRARY})
+   SET(TPPROTO_FOUND "YES")
+ELSE (TPPROTO_INCLUDE_DIR AND TPPROTO_LIBRARY)
+   SET(TPPROTO_FOUND "NO")
+ENDIF (TPPROTO_INCLUDE_DIR AND TPPROTO_LIBRARY)
+
+
+IF (TPPROTO_FOUND)
+   IF (NOT TPProto_FIND_QUIETLY)
+      MESSAGE(STATUS "Found TPProto: ${TPPROTO_LIBRARY}")
+   ENDIF (NOT TPProto_FIND_QUIETLY)
+ELSE (TPPROTO_FOUND)
+   IF (TPProto_FIND_REQUIRED)
+      MESSAGE(FATAL_ERROR "Could not find TPProto")
+   ENDIF (TPProto_FIND_REQUIRED)
+ENDIF (TPPROTO_FOUND)
