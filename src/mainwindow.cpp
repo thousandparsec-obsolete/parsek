@@ -3,6 +3,7 @@
 #include <tpproto/object.h>
 
 #include <QLabel>
+#include <QTimer>
 
 #include <kaction.h>
 #include <kicon.h>
@@ -30,6 +31,10 @@ MainWindow::MainWindow(QWidget *parent) : KMainWindow(parent)
     setupStatusBar();
     game = new GameLayer();
     game->setClientString(string("parsek/") + PARSEK_VERSION);
+    time = 0;
+    gotServerTime = false;
+    timer = new QTimer(this);
+    connect(timer, SIGNAL(timeout()), this, SLOT(updateTime()));
 }
 
 void MainWindow::setupActions()
@@ -96,7 +101,14 @@ void MainWindow::connectToServer()
 
 void MainWindow::updateTime()
 {
-    timeLabel->setText(secondsToDHMS(game->getTimeRemaining()));
+    if (gotServerTime == true) {
+      time = time -1;
+    } else {
+      time = game->getTimeRemaining();
+      gotServerTime = true;
+      timer->start(1000);
+    }
+    timeLabel->setText(secondsToDHMS(time));
 }
 
 void MainWindow::quitGame()

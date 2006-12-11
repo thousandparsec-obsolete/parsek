@@ -7,6 +7,7 @@
 #include <kmainwindow.h>
 
 class QLabel;
+class QTimer;
 class KAction;
 class KLed;
 
@@ -33,6 +34,9 @@ private:
     QLabel *statusLabel;
     QLabel *timeLabel;
     KLed *connectionLed;
+    int time;
+    bool gotServerTime;
+    QTimer *timer;
 };
 
 #endif // MAINWINDOW_H
