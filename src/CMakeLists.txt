@@ -16,7 +16,8 @@ add_definitions( ${KDE4_DEFINITIONS} )
 set( parsekSources
      parsek.cpp
      mainwindow.cpp
-     connecttoserverdialog.cpp )
+     connecttoserverdialog.cpp
+     converters.cpp )
 
 kde4_add_ui_files( parsekSources
                    connecttoserverdialog.ui )

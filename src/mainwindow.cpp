@@ -14,6 +14,7 @@
 #include <kstdaction.h>
 
 #include "connecttoserverdialog.h"
+#include "converters.h"
 #include "mainwindow.h"
 #include "mainwindow.moc"
 #include "version.h"
@@ -58,7 +59,7 @@ void MainWindow::setupMenus()
 void MainWindow::setupStatusBar()
 {
     statusLabel = new QLabel(i18n("Welcome to Parsek!"));
-    timeLabel = new QLabel("99999999");
+    timeLabel = new QLabel("99d 99h 99m 99s");
     timeLabel->setAlignment(Qt::AlignHCenter);
     timeLabel->setMinimumSize(timeLabel->sizeHint());
     timeLabel->clear();
@@ -95,7 +96,7 @@ void MainWindow::connectToServer()
 
 void MainWindow::updateTime()
 {
-    timeLabel->setText(QString::number(game->getTimeRemaining()));
+    timeLabel->setText(secondsToDHMS(game->getTimeRemaining()));
 }
 
 void MainWindow::quitGame()

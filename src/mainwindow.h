@@ -7,6 +7,7 @@
 #include <kmainwindow.h>
 
 class QLabel;
+class KAction;
 class KLed;
 
 using namespace TPProto;
