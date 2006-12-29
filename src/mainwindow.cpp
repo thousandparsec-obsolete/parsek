@@ -32,7 +32,7 @@
 #include <kmenubar.h>
 #include <kmessagebox.h>
 #include <kstatusbar.h>
-#include <kstdaction.h>
+#include <kstandardaction.h>
 
 #include "connecttoserverdialog.h"
 #include "converters.h"
@@ -68,7 +68,7 @@ void MainWindow::setupActions()
     connectAction->setStatusTip(i18n("Connect to a game server"));
     connect(connectAction, SIGNAL(triggered()),
             this, SLOT(connectToServer()));
-    quitAction = KStdAction::quit(this, SLOT(quitGame()), actionCollection());
+    quitAction = KStandardAction::quit(this, SLOT(quitGame()), actionCollection());
     quitAction->setStatusTip(i18n("Quit the game"));
 }
 
