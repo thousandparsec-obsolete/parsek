@@ -17,7 +17,8 @@ set( parsekSources
      parsek.cpp
      mainwindow.cpp
      connecttoserverdialog.cpp
-     converters.cpp )
+     converters.cpp
+     messagesmodel.cpp )
 
 kde4_add_ui_files( parsekSources
                    connecttoserverdialog.ui )
