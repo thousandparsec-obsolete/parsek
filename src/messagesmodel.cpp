@@ -72,9 +72,11 @@ QVariant MessagesModel::data(const QModelIndex &index, int role) const
         return messages.at(index.row())->getTurnNum();
     if (index.column() == 6 && role == Qt::DisplayRole)
         return QVariant();
+    else
+        return QVariant();
 }
 
-QVariant MessagesModel::headerData(int section, Qt::Orientation orientation,
-                                   int role) const
-{
-}
+// QVariant MessagesModel::headerData(int section, Qt::Orientation orientation,
+//                                    int role) const
+// {
+// }

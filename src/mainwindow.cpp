@@ -22,7 +22,9 @@
 #include <tpproto/gamelayer.h>
 #include <tpproto/object.h>
 
+#include <QDockWidget>
 #include <QLabel>
+#include <QTableView>
 #include <QTimer>
 
 #include <kaction.h>
@@ -38,6 +40,7 @@
 #include "converters.h"
 #include "mainwindow.h"
 #include "mainwindow.moc"
+#include "messagesmodel.h"
 #include "version.h"
 
 
@@ -94,6 +97,18 @@ void MainWindow::setupStatusBar()
     statusBar()->addWidget(connectionLed);
 }
 
+void MainWindow::setupDockWindows()
+{
+    QDockWidget *dock = new QDockWidget(i18n("Messages"), this);
+    dock->setAllowedAreas(Qt::BottomDockWidgetArea | Qt::TopDockWidgetArea);
+    MessagesModel *messagesModel = new MessagesModel();
+    messagesModel->setMessages(game, messageBoard);
+    QTableView *messagesView = new QTableView(dock);
+    messagesView->setModel(messagesModel);
+    dock->setWidget(messagesView);
+    addDockWidget(Qt::BottomDockWidgetArea, dock);
+}
+
 void MainWindow::connectToServer()
 {
     ConnectToServerDialog connectionDialog(this);
@@ -110,6 +125,7 @@ void MainWindow::connectToServer()
             connectionLed->setColor(Qt::green);
             updateTime();
             messageBoard = game->getPersonalBoard();
+            setupDockWindows();
         } else {
             KMessageBox::error(0L,
               i18n("It is not possible to connect to the server."),

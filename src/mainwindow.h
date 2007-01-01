@@ -46,6 +46,7 @@ private:
     void setupActions();
     void setupMenus();
     void setupStatusBar();
+    void setupDockWindows();
     GameLayer *game;
     Board *messageBoard;
     KAction *connectAction;
