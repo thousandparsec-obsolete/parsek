@@ -139,6 +139,7 @@ void MainWindow::updateTime()
 {
     if (gotServerTime == true) {
       time = time -1;
+      if (time == 1) gotServerTime = false;
     } else {
       time = game->getTimeRemaining();
       gotServerTime = true;
