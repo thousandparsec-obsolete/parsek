@@ -62,16 +62,13 @@ MainWindow::MainWindow(QWidget *parent) : KMainWindow(parent)
 
 void MainWindow::setupActions()
 {
-    connectAction = new KAction(
-        KIcon("connect"),
-        i18n("&Connect to server..."),
-        actionCollection(),
-        "game_connect"
-        );
+    connectAction = new KAction(this);
+    connectAction->setIcon(KIcon("connect_creating"));
+    connectAction->setText(i18n("&Connect to server..."));
     connectAction->setStatusTip(i18n("Connect to a game server"));
     connect(connectAction, SIGNAL(triggered()),
             this, SLOT(connectToServer()));
-    quitAction = KStandardAction::quit(this, SLOT(quitGame()), actionCollection());
+    quitAction = KStandardAction::quit(this, SLOT(quitGame()), this);
     quitAction->setStatusTip(i18n("Quit the game"));
 }
 
