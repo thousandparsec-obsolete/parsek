@@ -111,6 +111,8 @@ void MainWindow::connectToServer()
     ConnectToServerDialog connectionDialog(this);
     if (connectionDialog.exec()) {
         connectionLed->setColor(Qt::yellow);
+        statusLabel->setText(i18n("Connecting to server..."));
+        qApp->processEvents();
         string address = connectionDialog.serversHistoryCombo->
                          currentText().toUtf8().constData();
         if (game->getStatus() == gsDisconnected && game->connect(address)) {
@@ -119,9 +121,10 @@ void MainWindow::connectToServer()
             string pass = connectionDialog.passwordLine->
                           text().toUtf8().constData();
             game->login(user, pass);
-            connectionLed->setColor(Qt::green);
             updateTime();
             messageBoard = game->getPersonalBoard();
+            statusLabel->setText(i18n("Connected. Enjoy the game!"));
+            connectionLed->setColor(Qt::green);
             setupDockWindows();
         } else {
             KMessageBox::error(0L,
