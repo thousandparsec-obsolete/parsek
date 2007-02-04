@@ -2,8 +2,8 @@ Parsek
 --------------------
 
 General
-- Display messages
 - Display map of universe
+- Create nice interface for messages
 - Display object properties
 - Display object orders
 - Editing for messages
