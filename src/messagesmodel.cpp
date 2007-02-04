@@ -23,6 +23,8 @@
 #include <tpproto/gamelayer.h>
 #include <tpproto/message.h>
 
+#include <klocale.h>
+
 #include "mainwindow.h"
 #include "messagesmodel.h"
 #include "messagesmodel.moc"
@@ -76,7 +78,17 @@ QVariant MessagesModel::data(const QModelIndex &index, int role) const
         return QVariant();
 }
 
-// QVariant MessagesModel::headerData(int section, Qt::Orientation orientation,
-//                                    int role) const
-// {
-// }
+QVariant MessagesModel::headerData(int section, Qt::Orientation orientation,
+                                   int role) const
+{
+    if (role != Qt::DisplayRole) return QVariant();
+    if (section == 0 && orientation == Qt::Horizontal) return i18n("Board");
+    if (section == 1 && orientation == Qt::Horizontal) return i18n("Slot");
+    if (section == 2 && orientation == Qt::Horizontal) return i18n("Type");
+    if (section == 3 && orientation == Qt::Horizontal) return i18n("Subject");
+    if (section == 4 && orientation == Qt::Horizontal) return i18n("Message");
+    if (section == 5 && orientation == Qt::Horizontal) return i18n("Turn");
+    if (section == 6 && orientation == Qt::Horizontal) return QVariant();
+    if (orientation == Qt::Vertical) return section;
+    else return QVariant();
+}
