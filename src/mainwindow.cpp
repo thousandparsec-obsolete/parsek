@@ -127,6 +127,8 @@ void MainWindow::connectToServer()
             connectionLed->setColor(Qt::green);
             setupDockWindows();
         } else {
+            statusLabel->setText(i18n("Connection failed!"));
+            connectionLed->setColor(Qt::red);
             KMessageBox::error(0L,
               i18n("It is not possible to connect to the server."),
               i18n("Could Not Connect"));
