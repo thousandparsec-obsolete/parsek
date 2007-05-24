@@ -52,7 +52,7 @@
       </widget>
      </item>
      <item row="0" column="1" >
-      <widget class="KHistoryCombo" name="serversHistoryCombo" >
+      <widget class="KHistoryComboBox" name="serversHistoryCombo" >
        <property name="toolTip" >
         <string>Enter a server or select it from the dropdown list</string>
        </property>
@@ -160,9 +160,9 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>KHistoryCombo</class>
+   <class>KHistoryComboBox</class>
    <extends>KComboBox</extends>
-   <header>kcombobox.h</header>
+   <header>khistorycombobox.h</header>
   </customwidget>
   <customwidget>
    <class>KLineEdit</class>
