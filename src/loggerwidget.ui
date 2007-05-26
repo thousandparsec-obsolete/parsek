@@ -88,6 +88,9 @@
      <property name="acceptDrops" >
       <bool>false</bool>
      </property>
+     <property name="toolTip" >
+      <string>Log messages are displayed here</string>
+     </property>
      <property name="lineWrapMode" >
       <enum>QTextEdit::NoWrap</enum>
      </property>
