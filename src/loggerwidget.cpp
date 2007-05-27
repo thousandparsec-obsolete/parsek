@@ -36,7 +36,7 @@ void LoggerWidget::error(char* mesg, ...)
     QString message = "EE: ";
     message += QString::vsprintf(mesg, ap);
     va_end(ap);
-    logView.append(message);
+    logView->append(message);
 }
 
 void LoggerWidget::warning(char* mesg, ...)
@@ -46,7 +46,7 @@ void LoggerWidget::warning(char* mesg, ...)
     QString message = "WW: ";
     message += QString::vsprintf(mesg, ap);
     va_end(ap);
-    logView.append(message);
+    logView->append(message);
 }
 
 void LoggerWidget::info(char* mesg, ...)
@@ -56,7 +56,7 @@ void LoggerWidget::info(char* mesg, ...)
     QString message = "II: ";
     message += QString::vsprintf(mesg, ap);
     va_end(ap);
-    logView.append(message);
+    logView->append(message);
 }
 
 void LoggerWidget::debug(char* mesg, ...)
@@ -66,5 +66,5 @@ void LoggerWidget::debug(char* mesg, ...)
     QString message = "DD: ";
     message += QString::vsprintf(mesg, ap);
     va_end(ap);
-    logView.append(message);
+    logView->append(message);
 }
