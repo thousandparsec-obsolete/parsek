@@ -18,10 +18,12 @@ set( parsekSources
      mainwindow.cpp
      connecttoserverdialog.cpp
      converters.cpp
-     messagesmodel.cpp )
+     messagesmodel.cpp
+     loggerwidget.cpp )
 
 kde4_add_ui_files( parsekSources
-                   connecttoserverdialog.ui )
+                   connecttoserverdialog.ui
+                   loggerwidget.ui )
 
 kde4_automoc( ${parsekSources} )
 kde4_add_executable( parsek ${parsekSources} )
