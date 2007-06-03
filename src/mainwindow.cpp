@@ -100,12 +100,12 @@ void MainWindow::setupDockWindows()
 {
     MessagesModel *messagesModel = new MessagesModel();
     messagesModel->setMessages(game, messageBoard);
-    QTableView *messagesView = new QTableView(dock);
+    QTableView *messagesView = new QTableView();
     messagesView->setModel(messagesModel);
-    QDockWidget *dock = new QDockWidget(i18n("Messages"), this);
-    dock->setAllowedAreas(Qt::BottomDockWidgetArea | Qt::TopDockWidgetArea);
-    dock->setWidget(messagesView);
-    addDockWidget(Qt::BottomDockWidgetArea, dock);
+    QDockWidget *messagesDock = new QDockWidget(i18n("Messages"), this);
+    messagesDock->setAllowedAreas(Qt::BottomDockWidgetArea | Qt::TopDockWidgetArea);
+    messagesDock->setWidget(messagesView);
+    addDockWidget(Qt::BottomDockWidgetArea, messagesDock);
 
     LoggerWidget *loggerWidget = new LoggerWidget();
     QDockWidget *loggerDock = new QDockWidget(i18n("Log"), this);
