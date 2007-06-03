@@ -108,6 +108,7 @@ void MainWindow::setupDockWindows()
     addDockWidget(Qt::BottomDockWidgetArea, messagesDock);
 
     LoggerWidget *loggerWidget = new LoggerWidget();
+    game->setLogger(loggerWidget);
     QDockWidget *loggerDock = new QDockWidget(i18n("Log"), this);
     loggerDock->setAllowedAreas(Qt::BottomDockWidgetArea | Qt::TopDockWidgetArea);
     loggerDock->setWidget(loggerWidget);
