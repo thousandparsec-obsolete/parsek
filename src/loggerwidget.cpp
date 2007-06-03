@@ -29,6 +29,10 @@ LoggerWidget::LoggerWidget(QWidget *parent)
     setupUi(this);
 }
 
+LoggerWidget::~LoggerWidget()
+{
+}
+
 void LoggerWidget::error(char* mesg, ...)
 {
     va_list ap;

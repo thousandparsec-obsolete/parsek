@@ -31,6 +31,7 @@ class LoggerWidget : public QWidget, public Ui::LoggerWidget,
     Q_OBJECT
 public:
     LoggerWidget(QWidget *parent = 0);
+    virtual ~LoggerWidget();
     void error(char* mesg, ...);
     void warning(char* mesg, ...);
     void info(char* mesg, ...);
