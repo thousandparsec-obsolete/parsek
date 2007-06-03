@@ -38,6 +38,8 @@
 
 #include "connecttoserverdialog.h"
 #include "converters.h"
+#include "loggerwidget.h"
+#include "loggerwidget.moc"
 #include "mainwindow.h"
 #include "mainwindow.moc"
 #include "messagesmodel.h"
@@ -96,14 +98,20 @@ void MainWindow::setupStatusBar()
 
 void MainWindow::setupDockWindows()
 {
-    QDockWidget *dock = new QDockWidget(i18n("Messages"), this);
-    dock->setAllowedAreas(Qt::BottomDockWidgetArea | Qt::TopDockWidgetArea);
     MessagesModel *messagesModel = new MessagesModel();
     messagesModel->setMessages(game, messageBoard);
     QTableView *messagesView = new QTableView(dock);
     messagesView->setModel(messagesModel);
+    QDockWidget *dock = new QDockWidget(i18n("Messages"), this);
+    dock->setAllowedAreas(Qt::BottomDockWidgetArea | Qt::TopDockWidgetArea);
     dock->setWidget(messagesView);
     addDockWidget(Qt::BottomDockWidgetArea, dock);
+
+    LoggerWidget *loggerWidget = new LoggerWidget();
+    QDockWidget *loggerDock = new QDockWidget(i18n("Log"), this);
+    loggerDock->setAllowedAreas(Qt::BottomDockWidgetArea | Qt::TopDockWidgetArea);
+    loggerDock->setWidget(loggerWidget);
+    addDockWidget(Qt::BottomDockWidgetArea, loggerDock);
 }
 
 void MainWindow::connectToServer()
