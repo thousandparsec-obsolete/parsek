@@ -35,40 +35,44 @@ LoggerWidget::~LoggerWidget()
 
 void LoggerWidget::error(char* mesg, ...)
 {
+    QString message;
     va_list ap;
-    va_start(ap, mesg)
-    QString message = "EE: ";
-    message += QString::vsprintf(mesg, ap);
+    va_start(ap, mesg);
+    message.vsprintf(mesg, ap);
     va_end(ap);
-    logView->append(message);
+    QString fullmessage = "EE: " + message;
+    logView->append(fullmessage);
 }
 
 void LoggerWidget::warning(char* mesg, ...)
 {
+    QString message;
     va_list ap;
-    va_start(ap, mesg)
-    QString message = "WW: ";
-    message += QString::vsprintf(mesg, ap);
+    va_start(ap, mesg);
+    message.vsprintf(mesg, ap);
     va_end(ap);
-    logView->append(message);
+    QString fullmessage = "WW: " + message;
+    logView->append(fullmessage);
 }
 
 void LoggerWidget::info(char* mesg, ...)
 {
+    QString message;
     va_list ap;
-    va_start(ap, mesg)
-    QString message = "II: ";
-    message += QString::vsprintf(mesg, ap);
+    va_start(ap, mesg);
+    message.vsprintf(mesg, ap);
     va_end(ap);
-    logView->append(message);
+    QString fullmessage = "II: " + message;
+    logView->append(fullmessage);
 }
 
 void LoggerWidget::debug(char* mesg, ...)
 {
+    QString message;
     va_list ap;
-    va_start(ap, mesg)
-    QString message = "DD: ";
-    message += QString::vsprintf(mesg, ap);
+    va_start(ap, mesg);
+    message.vsprintf(mesg, ap);
     va_end(ap);
-    logView->append(message);
+    QString fullmessage = "DD: " + message;
+    logView->append(fullmessage);
 }

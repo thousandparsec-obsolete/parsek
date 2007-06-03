@@ -28,7 +28,6 @@
 class LoggerWidget : public QWidget, public Ui::LoggerWidget,
                      public TPProto::Logger
 {
-    Q_OBJECT
 public:
     LoggerWidget(QWidget *parent = 0);
     virtual ~LoggerWidget();
