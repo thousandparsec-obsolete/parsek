@@ -17,41 +17,65 @@
     <layout class="QHBoxLayout" >
      <item>
       <widget class="QCheckBox" name="errorsCheckBox" >
+       <property name="enabled" >
+        <bool>false</bool>
+       </property>
        <property name="toolTip" >
         <string>Toggle display of error messages</string>
        </property>
        <property name="text" >
         <string>&amp;Errors</string>
        </property>
+       <property name="checked" >
+        <bool>true</bool>
+       </property>
       </widget>
      </item>
      <item>
       <widget class="QCheckBox" name="warningsCheckBox" >
+       <property name="enabled" >
+        <bool>false</bool>
+       </property>
        <property name="toolTip" >
         <string>Toggle display of warning messages</string>
        </property>
        <property name="text" >
         <string>&amp;Warnings</string>
        </property>
+       <property name="checked" >
+        <bool>true</bool>
+       </property>
       </widget>
      </item>
      <item>
       <widget class="QCheckBox" name="infoCheckBox" >
+       <property name="enabled" >
+        <bool>false</bool>
+       </property>
        <property name="toolTip" >
         <string>Toggle display of info messages</string>
        </property>
        <property name="text" >
         <string>&amp;Info</string>
        </property>
+       <property name="checked" >
+        <bool>true</bool>
+       </property>
       </widget>
      </item>
      <item>
       <widget class="QCheckBox" name="debugCheckBox" >
+       <property name="enabled" >
+        <bool>false</bool>
+       </property>
        <property name="toolTip" >
         <string>Toggle display of debug messages</string>
        </property>
        <property name="text" >
         <string>&amp;Debug</string>
+       </property>
+       <property name="checked" >
+        <bool>true</bool>
        </property>
       </widget>
      </item>
