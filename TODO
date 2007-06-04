@@ -9,5 +9,8 @@ General
 - Editing for messages
 - Editing for orders
 
-Polish
-- Make main window refreshing during connecting
+Logger Widget
+- Toggling of log messege types
+
+Main Window
+- Refreshing during connecting
