@@ -33,10 +33,8 @@
 class ObjectsItem
 {
 public:
-    ObjectsItem(ObjectsItem *parent = 0);
+    ObjectsItem(const QList<QVariant> &properties, ObjectsItem *parent = 0);
     ~ObjectsItem();
-    /** Sets list of child objects, list of properties and parent object */
-    void setProperties();
     /** Adds object @p child to the list of children */
     void appendChild(ObjectsItem *child);
     /** Returns child at row @p row in the list of children of this object */
@@ -46,7 +44,7 @@ public:
     /** Returns number of object properties */
     int propertiesCount() const;
     /** Returns property at position @p column */
-    QVariant propery(int column) const;
+    QVariant property(int column) const;
     /** Returns position of this object in the list of parents children */
     int row() const;
     /** Returns parent of this object */
