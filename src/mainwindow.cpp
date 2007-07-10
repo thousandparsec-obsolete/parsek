@@ -81,6 +81,8 @@ void MainWindow::setupMenus()
     gameMenu->addSeparator();
     gameMenu->addAction(quitAction);
     menuBar()->addMenu(gameMenu);
+    help = helpMenu();
+    menuBar()->addMenu(help);
 }
 
 void MainWindow::setupStatusBar()

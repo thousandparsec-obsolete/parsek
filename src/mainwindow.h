@@ -52,6 +52,7 @@ private:
     KAction *connectAction;
     KAction *quitAction;
     KMenu *gameMenu;
+    KMenu *help;
     QLabel *statusLabel;
     QLabel *timeLabel;
     KLed *connectionLed;
