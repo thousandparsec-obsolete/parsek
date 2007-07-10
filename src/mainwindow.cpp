@@ -65,7 +65,7 @@ MainWindow::MainWindow(QWidget *parent) : KMainWindow(parent)
 void MainWindow::setupActions()
 {
     connectAction = new KAction(this);
-    connectAction->setIcon(KIcon("connect_creating"));
+    connectAction->setIcon(KIcon("connection-established"));
     connectAction->setText(i18n("&Connect to server..."));
     connectAction->setStatusTip(i18n("Connect to a game server"));
     connect(connectAction, SIGNAL(triggered()),
