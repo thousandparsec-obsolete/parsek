@@ -1,0 +1,65 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.2-Based Variant V1.1//EN" "dtd/kdex.dtd" [
+  <!ENTITY parsek "<application>Parsek</application>">
+  <!ENTITY kappname "&parsek;">
+  <!ENTITY package "kde-module">
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % English "INCLUDE" >
+]>
+
+<book lang="&language;">
+
+<bookinfo>
+
+  <title>The &parsek; Handbook</title>
+
+  <authorgroup>
+    <author>
+      <personname>
+        <firstname>Jure</firstname>
+        <surname>Repinc</surname>
+      </personname>
+      <email>jlp@holodeck1.com</email>
+    </author>
+    <!-- TRANS:ROLES_OF_TRANSLATORS -->
+  </authorgroup>
+
+  <copyright>
+    <year>2007</year>
+    <holder>Jure Repinc</holder>
+  </copyright>
+
+  <!-- Translators: put here the copyright notice of the translation -->
+
+  <legalnotice>&FDLNotice;</legalnotice>
+
+  <date>2007-07-02</date>
+  <releaseinfo>0.00.01</releaseinfo>
+
+  <abstract>
+    <para>
+      &parsek; is a 4X space strategy games client for &kde; 4.
+    </para>
+  </abstract>
+
+  <keywordset>
+    <keyword>KDE</keyword>
+    <keyword>kdegames</keyword>
+    <keyword>games</keyword>
+    <keyword>strategy</keyword>
+    <keyword>4X</keyword>
+    <keyword>space</keyword>
+    <keyword>Parsek</keyword>
+  </keywordset>
+
+</bookinfo>
+
+<chapter id="introduction">
+  <title>Introduction</title>
+</chapter>
+
+<chapter id="using-parsek">
+  <title>Using &parsek;</title>
+</chapter>
+
+</book>
