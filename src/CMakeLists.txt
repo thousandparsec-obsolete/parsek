@@ -25,7 +25,6 @@ kde4_add_ui_files( parsekSources
                    connecttoserverdialog.ui
                    loggerwidget.ui )
 
-kde4_automoc( ${parsekSources} )
 kde4_add_executable( parsek ${parsekSources} )
 
 target_link_libraries( parsek ${KDE4_KDEUI_LIBS} ${TPPROTO_LIBRARY} )
