@@ -31,4 +31,4 @@ kde4_add_executable( parsek ${parsekSources} )
 target_link_libraries( parsek ${KDE4_KDEUI_LIBS} ${TPPROTO_LIBRARY} )
 
 install( TARGETS parsek DESTINATION bin )
-install( FILES parsek.desktop DESTINATION ${XDG_APPS_DIR} )
+#install( FILES parsek.desktop DESTINATION ${XDG_APPS_DIR} )
