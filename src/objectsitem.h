@@ -33,7 +33,8 @@
 class ObjectsItem
 {
 public:
-    ObjectsItem(const QList<QVariant> &properties, ObjectsItem *parent = 0);
+    enum ObjectType { Unknown = -1, Universe, Galaxy, StarSystem, Planet, Fleet };
+    ObjectsItem(ObjectsItem *parent = 0);
     ~ObjectsItem();
     /** Adds object @p child to the list of children */
     void appendChild(ObjectsItem *child);
@@ -41,18 +42,52 @@ public:
     ObjectsItem *child(int row);
     /** Returns number of children objects */
     int childrenCount() const;
-    /** Returns number of object properties */
+    /** Returns number of object's extra properties */
     int propertiesCount() const;
-    /** Returns property at position @p column */
-    QVariant property(int column) const;
+    /** Returns object's extra property labeled with @p label */
+    QVariant property(const QString &label) const;
     /** Returns position of this object in the list of parents children */
     int row() const;
     /** Returns parent of this object */
     ObjectsItem *parent();
+    quint32 id() const;
+    void setId(quint32 id);
+    ObjectType type() const;
+    void setType(ObjectType type);
+    QString name() const;
+    void setName(const QString &name);
+    quint64 size() const;
+    void setSize(quint64 size);
+    qint64 x() const;
+    void setX(qint64 x);
+    qint64 y() const;
+    void setY(qint64 y);
+    qint64 z() const;
+    void setZ(qint64 z);
+    qint64 vx() const;
+    void setVX(qint64 vx);
+    qint64 vy() const;
+    void setVY(qint64 vy);
+    qint64 vz() const;
+    void setVZ(qint64 vz);
+    quint64 modTime() const;
+    void setModTime(quint64 time);
+
 private:
     QList<ObjectsItem*> m_children;
-    QList<QVariant> m_properties;
+    QHash<QString, QVariant> m_properties;
     ObjectsItem *m_parent;
+    quint32 m_id;
+    Type m_type;
+    QString m_name;
+    quint64 m_size;
+    qint64 m_x;
+    qint64 m_y;
+    qint64 m_z;
+    qint64 m_vx;
+    qint64 m_vy;
+    qint64 m_vz;
+    quint64 m_modTime;
 }
 
 #endif // OBJECTSITEM_H

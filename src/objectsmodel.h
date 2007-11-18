@@ -18,28 +18,47 @@
 
 */
 
+/** @file
+* This file defines the class ObjectsModel which is used to store a Universe
+* @author Jure Repinc <jlp@holodeck1.com>
+*/
+
 #ifndef OBJECTSMODEL_H
 #define OBJECTSMODEL_H
 
-#include "objectsitem.h"
-
 #include <QAbstractItemModel>
+
+#include <tpproto/gamelayer.h>
+#include <tpproto/object.h>
+
+#include "objectsitem.h"
 
 using namespace TPProto;
 
+/** Class for storing ObjectsItems and representing a Universe */
 class ObjectsModel : public QAbstractItemsModel
 {
     Q_OBJECT
 public:
     ObjectsModel(QObject *parent = 0);
     ~ObjectsModel();
+    /** Sets up Universe data for the game @p game */
     void setUniverse(GameLayer *game);
+    /** Adds object @p object with parent @p parent to the Universe tree */
+    void addObject(Object *object, ObjectsItem *parent = 0);
+    /** Returns model index for object at 
+        row @p row, column @p column and with parent @p parent */
     QModelIndex index(int row, int column,
                       const QModelIndex &parent = QModelIndex()) const;
+    /** Returns the model index of the object's parent */
     QModelIndex parent(const QModelIndex &index) const;
+    /** Returns the number of children of the @p parent */
     int rowCount(const QModelIndex &parent = QModelIndex()) const;
+    /** Returns the number of properties of the @p parent */
     int columnCount (const QModelIndex &parent = QModelIndex()) const;
+    /** Returns information for object with index @p index */
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
+    /** Returns the header for the object data */
     QVariant headerData(int section, Qt::Orientation orientation,
                         int role = Qt::DisplayRole) const;
 private:

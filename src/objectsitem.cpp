@@ -20,10 +20,9 @@
 
 #include "objectsitem.h"
 
-ObjectsItem::ObjectsItem(const QList<QVariant> &properties, ObjectsItem *parent)
+ObjectsItem::ObjectsItem(ObjectsItem *parent)
 {
     m_parent = parent;
-    m_properties = properties;
 }
 
 ObjectsItem::~ObjectsItem()
@@ -43,17 +42,17 @@ ObjectsItem *ObjectsItem::child(int row)
 
 int ObjectsItem::childrenCount() const
 {
-    return m_children.count();
+    return m_children.size();
 }
 
 int ObjectsItem::propertiesCount() const
 {
-    return m_properties.count();
+    return m_properties.size();
 }
 
-QVariant ObjectsItem::property(int column) const
+QVariant ObjectsItem::property(const QString &label) const
 {
-    return m_properties.value(column);
+    return m_properties.value(label);
 }
 
 int ObjectsItem::row() const
@@ -66,4 +65,114 @@ int ObjectsItem::row() const
 ObjectsItem *ObjectsItem::parent()
 {
     return m_parent;
+}
+
+quint32 ObjectsItem::id() const
+{
+    return m_id;
+}
+
+void ObjectsItem::setId(quint32 id)
+{
+    m_id = id;
+}
+
+ObjectType ObjectsItem::type() const
+{
+    return m_type;
+}
+
+void ObjectsItem::setType(ObjectType type)
+{
+    m_type = type;
+}
+
+QString ObjectsItem::name() const
+{
+    return m_name;
+}
+
+void ObjectsItem::setName(const QString &name)
+{
+    m_name = name;
+}
+
+quint64 ObjectsItem::size() const
+{
+    return m_size;
+}
+
+void ObjectsItem::setSize(quint64 size)
+{
+    m_size = size;
+}
+
+qint64 ObjectsItem::x() const
+{
+    return m_x;
+}
+
+void ObjectsItem::setX(qint64 x)
+{
+    m_x = x;
+}
+
+qint64 ObjectsItem::y() const
+{
+    return m_y;
+}
+
+void ObjectsItem::setY(qint64 y)
+{
+    m_y = y;
+}
+
+qint64 ObjectsItem::z() const
+{
+    return m_z;
+}
+
+void ObjectsItem::setZ(qint64 z)
+{
+    m_z = z;
+}
+
+qint64 ObjectsItem::vx() const
+{
+    return m_vx;
+}
+
+void ObjectsItem::setVX(qint64 vx)
+{
+    m_vx = vx;
+}
+
+qint64 ObjectsItem::vy() const
+{
+    return m_vy;
+}
+
+void ObjectsItem::setVY(qint64 vy)
+{
+    m_vy = vy;
+}
+
+qint64 ObjectsItem::vz() const
+{
+    return m_vz;
+}
+
+void ObjectsItem::setVZ(qint64 vz)
+{
+    m_vz = vz;
+}
+
+quint64 ObjectsItem::modTime() const
+{
+    return m_modTime;
+}
+
+void ObjectsItem::setModTime(quint64 time)
+{
+    m_modTime = time;
 }

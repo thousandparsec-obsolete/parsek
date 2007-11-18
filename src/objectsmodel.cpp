@@ -33,7 +33,20 @@ ObjectsModel::~ObjectsModel()
 
 void ObjectsModel::setUniverse(GameLayer *game)
 {
-    // TODO
+    delete m_universe;
+    addObject(game->getUniverse());
+    reset();
+}
+
+void ObjectsModel::addObject(Object *object, ObjectsItem *parent)
+{
+    ObjectsItem *addedObject = new ObjectsItem(parent);
+    importObject(object, addedObject);
+    if (addedObject->type() == ObjectType::Universe) m_universe = addedObject;
+    foreach (unsigned int id, object->getContainedObjectIds())
+    {
+        addObject(game->getObject(id), addedObject);
+    }
 }
 
 QModelIndex ObjectsModel::index(int row, int column,
@@ -87,9 +100,24 @@ int ObjectsModel::rowCount(const QModelIndex &parent) const
 int ObjectsModel::columnCount (const QModelIndex &parent) const
 {
     if (parent.isValid)
-        return static_cast<ObjectsItem*>(parent.internalPointer())->propertiesCount();
+        return
+        static_cast<ObjectsItem*>(parent.internalPointer())->propertiesCount();
     else
         return m_universe->propertiesCount();
 }
 
+QVariant ObjectsModel::data(const QModelIndex &index, int role) const
+{
+    ObjectsItem *object = m_objectsItemFromIndex(index);
+    if (!object) return QVariant();
+    // TODO - finish returning data
+}
 
+ObjectsItem *ObjectsModel::m_objectsItemFromIndex(const QModelIndex &index) const
+{
+    if (index.isValid()) {
+        return static_cast<ObjectsItem *>(index.internalPointer());
+    } else {
+        return m_universe;
+    }
+}
