@@ -58,7 +58,7 @@ QVariant ObjectsItem::property(const QString &label) const
 int ObjectsItem::row() const
 {
     if(m_parent)
-        return m_parent->children.indexOf(const_cast<ObjectsItem*>(this));
+        return m_parent->m_children.indexOf(const_cast<ObjectsItem*>(this));
     return 0;
 }
 
@@ -77,7 +77,7 @@ void ObjectsItem::setId(quint32 id)
     m_id = id;
 }
 
-ObjectType ObjectsItem::type() const
+ObjectsItem::ObjectType ObjectsItem::type() const
 {
     return m_type;
 }

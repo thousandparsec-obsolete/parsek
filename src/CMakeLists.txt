@@ -14,12 +14,13 @@ include_directories( ${KDE4_INCLUDES} ${TPPROTO_INCLUDE_DIR} )
 add_definitions( ${KDE4_DEFINITIONS} )
 
 set( parsekSources
-     parsek.cpp
-     mainwindow.cpp
      connecttoserverdialog.cpp
      converters.cpp
+     loggerwidget.cpp
+     mainwindow.cpp
      messagesmodel.cpp
-     loggerwidget.cpp )
+     objectsitem.cpp
+     parsek.cpp )
 
 kde4_add_ui_files( parsekSources
                    connecttoserverdialog.ui

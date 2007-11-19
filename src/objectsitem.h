@@ -26,6 +26,7 @@
 #ifndef OBJECTSITEM_H
 #define OBJECTSITEM_H
 
+#include <QHash>
 #include <QList>
 #include <QVariant>
 
@@ -78,7 +79,7 @@ private:
     QHash<QString, QVariant> m_properties;
     ObjectsItem *m_parent;
     quint32 m_id;
-    Type m_type;
+    ObjectType m_type;
     QString m_name;
     quint64 m_size;
     qint64 m_x;
@@ -88,6 +89,6 @@ private:
     qint64 m_vy;
     qint64 m_vz;
     quint64 m_modTime;
-}
+};
 
 #endif // OBJECTSITEM_H
