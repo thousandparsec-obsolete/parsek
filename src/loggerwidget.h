@@ -31,10 +31,10 @@ class LoggerWidget : public QWidget, public Ui::LoggerWidget,
 public:
     LoggerWidget(QWidget *parent = 0);
     virtual ~LoggerWidget();
-    void error(char* mesg, ...);
-    void warning(char* mesg, ...);
-    void info(char* mesg, ...);
-    void debug(char* mesg, ...);
+    void error(const char* mesg, ...);
+    void warning(const char* mesg, ...);
+    void info(const char* mesg, ...);
+    void debug(const char* mesg, ...);
 };
 
 #endif // LOGGERWIDGET_H
