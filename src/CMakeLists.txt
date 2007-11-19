@@ -16,6 +16,7 @@ add_definitions( ${KDE4_DEFINITIONS} )
 set( parsekSources
      connecttoserverdialog.cpp
      converters.cpp
+     importobject.cpp
      loggerwidget.cpp
      mainwindow.cpp
      messagesmodel.cpp

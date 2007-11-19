@@ -18,9 +18,11 @@
 
 */
 
+#include "importobject.h"
+
 void importObject(Universe *object, ObjectsItem *imported)
 {
-    importCommonProperties(object, imported);
+    setCommonProperties(object, imported);
 }
 
 void importObject(Galaxy *object, ObjectsItem *imported)
@@ -45,17 +47,17 @@ void importObject(Fleet *object, ObjectsItem *imported)
 
 void setCommonProperties(Object *source, ObjectsItem *target)
 {
-    switch (source-getObjectType())
+    switch (source->getObjectType())
     {
-        case 0: target->setType(ObjectType::Universe);
-        case 1: target->setType(ObjectType::Galaxy);
-        case 2: target->setType(ObjectType::StarSystem);
-        case 3: target->setType(ObjectType::Planet);
-        case 4: target->setType(ObjectType::Fleet);
-        default: target->setType(ObjectType::Unknown);
+        case 0: target->setType(ObjectsItem::Universe);
+        case 1: target->setType(ObjectsItem::Galaxy);
+        case 2: target->setType(ObjectsItem::StarSystem);
+        case 3: target->setType(ObjectsItem::Planet);
+        case 4: target->setType(ObjectsItem::Fleet);
+        default: target->setType(ObjectsItem::Unknown);
     }
     target->setId(source->getId());
-    target->setName(source->getName());
+    target->setName(QString::fromUtf8(source->getName().c_str()));
     target->setX(source->getPos().getX());
     target->setY(source->getPos().getY());
     target->setZ(source->getPos().getZ());

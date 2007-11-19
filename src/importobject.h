@@ -27,7 +27,16 @@
 #ifndef IMPORTOBJECT_H
 #define IMPORTOBJECT_H
 
+#include <tpproto/fleet.h>
+#include <tpproto/galaxy.h>
+#include <tpproto/object.h>
+#include <tpproto/planet.h>
+#include <tpproto/starsystem.h>
+#include <tpproto/universe.h>
+
 #include "objectsitem.h"
+
+using namespace TPProto;
 
 void importObject(Universe *object, ObjectsItem *imported);
 void importObject(Galaxy *object, ObjectsItem *imported);
