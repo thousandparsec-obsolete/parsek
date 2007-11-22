@@ -18,6 +18,9 @@
 
 */
 
+#include <klocale.h>
+
+#include "converters.h"
 #include "importobject.h"
 #include "objectsitem.h"
 #include "objectsmodel.h"
@@ -106,16 +109,32 @@ int ObjectsModel::columnCount (const QModelIndex &parent) const
 {
     if (parent.isValid())
         return
-        static_cast<ObjectsItem*>(parent.internalPointer())->propertiesCount();
+        static_cast<ObjectsItem*>(parent.internalPointer())->propertiesCount()
+        + 5; // 5 common properties in addition to special properties
     else
-        return m_universe->propertiesCount();
+        return m_universe->propertiesCount() + 5;
 }
 
 QVariant ObjectsModel::data(const QModelIndex &index, int role) const
 {
     ObjectsItem *object = m_objectsItemFromIndex(index);
     if (!object) return QVariant();
-    // TODO - finish returning data
+    QString posStr = positionToString(object->x(), object->y(), object->z());
+    QString velStr = velocityToString(object->vx(), object->vy(), object->vz());
+    switch (role)
+    {
+        case Qt::DisplayRole: switch (index.column())
+        {
+            case 0: return object->id();
+            case 1: return object->name();
+            case 2: return posStr;
+            case 3: return velStr;
+            case 4: return object->size();
+            case 5: return object->modTime();
+            default: return QVariant();
+        }
+        default: return QVariant();
+    }
 }
 
 QVariant ObjectsModel::headerData(int section, Qt::Orientation orientation,
