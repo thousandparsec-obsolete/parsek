@@ -121,8 +121,15 @@ QVariant ObjectsModel::data(const QModelIndex &index, int role) const
 QVariant ObjectsModel::headerData(int section, Qt::Orientation orientation,
                                   int role) const
 {
-    return QVariant();
-    // TODO - finish returning headers
+    if (role != Qt::DisplayRole) return QVariant();
+    if (section == 0 && orientation == Qt::Horizontal) return i18n("ID");
+    if (section == 1 && orientation == Qt::Horizontal) return i18n("Name");
+    if (section == 2 && orientation == Qt::Horizontal) return i18n("Position");
+    if (section == 3 && orientation == Qt::Horizontal) return i18n("Velocity");
+    if (section == 4 && orientation == Qt::Horizontal) return i18n("Size");
+    if (section == 5 && orientation == Qt::Horizontal) return i18n("Data Age");
+    if (orientation == Qt::Vertical) return section;
+    else return QVariant();
 }
 
 ObjectsItem *ObjectsModel::m_objectsItemFromIndex(const QModelIndex &index) const
