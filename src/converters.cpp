@@ -43,3 +43,27 @@ QString secondsToDHMS(const int seconds)
   return QString::number(d) + "d " + QString::number(h) + "h "
          + QString::number(m) + "m " + QString::number(s) + 's';
 }
+
+QString positionToString(const qint64 x, const qint64 y, const qint64 z)
+{
+    QString position = "(";
+    position += QString::number(x);
+    position += ", ";
+    position += QString::number(y);
+    position += ", ";
+    position += QString::number(z);
+    position += ')';
+    return position;
+}
+
+QString velocityToString(const qint64 vx, const qint64 vy, const qint64 vz)
+{
+    QString velocity = "(";
+    velocity += QString::number(vx);
+    velocity += ", ";
+    velocity += QString::number(vy);
+    velocity += ", ";
+    velocity += QString::number(vz);
+    velocity += ')';
+    return velocity;
+}

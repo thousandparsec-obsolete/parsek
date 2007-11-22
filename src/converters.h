@@ -22,5 +22,7 @@
 #define CONVERTERS_H
 
 QString secondsToDHMS(const int seconds);
+QString positionToString(const qint64 x, const qint64 y, const qint64 z);
+QString velocityToString(const qint64 vx, const qint64 vy, const qint64 vz);
 
 #endif //CONVERTERS_H
