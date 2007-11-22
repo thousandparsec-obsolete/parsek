@@ -21,6 +21,7 @@ set( parsekSources
      mainwindow.cpp
      messagesmodel.cpp
      objectsitem.cpp
+     objectsmodel.cpp
      parsek.cpp )
 
 kde4_add_ui_files( parsekSources

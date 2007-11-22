@@ -18,8 +18,12 @@
 
 */
 
+#include "importobject.h"
 #include "objectsitem.h"
 #include "objectsmodel.h"
+#include "objectsmodel.moc"
+
+using namespace TPProto;
 
 ObjectsModel::ObjectsModel(QObject *parent) : QAbstractItemModel(parent)
 {
@@ -34,18 +38,19 @@ ObjectsModel::~ObjectsModel()
 void ObjectsModel::setUniverse(GameLayer *game)
 {
     delete m_universe;
-    addObject(game->getUniverse());
+    addObject(game, game->getUniverse());
     reset();
 }
 
-void ObjectsModel::addObject(Object *object, ObjectsItem *parent)
+template <typename T>
+void ObjectsModel::addObject(GameLayer *game, T *object, ObjectsItem *parent)
 {
     ObjectsItem *addedObject = new ObjectsItem(parent);
     importObject(object, addedObject);
-    if (addedObject->type() == ObjectType::Universe) m_universe = addedObject;
+    if (addedObject->type() == ObjectsItem::Universe) m_universe = addedObject;
     foreach (unsigned int id, object->getContainedObjectIds())
     {
-        addObject(game->getObject(id), addedObject);
+        addObject(game, game->getObject(id), addedObject);
     }
 }
 
@@ -62,9 +67,9 @@ QModelIndex ObjectsModel::index(int row, int column,
     else
         parentItem = static_cast<ObjectsItem*>(parent.internalPointer());
 
-    ObjectsItem *childItem = parentItem->chld(row);
+    ObjectsItem *childItem = parentItem->child(row);
     if (childItem)
-        return createIndex(row, column, childItem)
+        return createIndex(row, column, childItem);
     else
         return QModelIndex();
 }
@@ -80,7 +85,7 @@ QModelIndex ObjectsModel::parent(const QModelIndex &index) const
     if (parentItem == m_universe)
         return QModelIndex();
 
-    return createIndex(parentItem(row), 0, parentItem);
+    return createIndex(parentItem->row(), 0, parentItem);
 }
 
 int ObjectsModel::rowCount(const QModelIndex &parent) const
@@ -99,7 +104,7 @@ int ObjectsModel::rowCount(const QModelIndex &parent) const
 
 int ObjectsModel::columnCount (const QModelIndex &parent) const
 {
-    if (parent.isValid)
+    if (parent.isValid())
         return
         static_cast<ObjectsItem*>(parent.internalPointer())->propertiesCount();
     else
@@ -111,6 +116,13 @@ QVariant ObjectsModel::data(const QModelIndex &index, int role) const
     ObjectsItem *object = m_objectsItemFromIndex(index);
     if (!object) return QVariant();
     // TODO - finish returning data
+}
+
+QVariant ObjectsModel::headerData(int section, Qt::Orientation orientation,
+                                  int role) const
+{
+    return QVariant();
+    // TODO - finish returning headers
 }
 
 ObjectsItem *ObjectsModel::m_objectsItemFromIndex(const QModelIndex &index) const

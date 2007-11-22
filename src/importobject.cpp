@@ -20,6 +20,11 @@
 
 #include "importobject.h"
 
+void importObject(Object *object, ObjectsItem *imported)
+{
+    setCommonProperties(object, imported);
+}
+
 void importObject(Universe *object, ObjectsItem *imported)
 {
     setCommonProperties(object, imported);

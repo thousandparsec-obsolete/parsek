@@ -36,16 +36,17 @@
 using namespace TPProto;
 
 /** Class for storing ObjectsItems and representing a Universe */
-class ObjectsModel : public QAbstractItemsModel
+class ObjectsModel : public QAbstractItemModel
 {
     Q_OBJECT
 public:
     ObjectsModel(QObject *parent = 0);
-    ~ObjectsModel();
+    virtual ~ObjectsModel();
     /** Sets up Universe data for the game @p game */
     void setUniverse(GameLayer *game);
     /** Adds object @p object with parent @p parent to the Universe tree */
-    void addObject(Object *object, ObjectsItem *parent = 0);
+    template <typename T>
+    void addObject(GameLayer *game, T *object, ObjectsItem *parent = 0);
     /** Returns model index for object at 
         row @p row, column @p column and with parent @p parent */
     QModelIndex index(int row, int column,
@@ -64,6 +65,6 @@ public:
 private:
     ObjectsItem *m_objectsItemFromIndex(const QModelIndex &index) const;
     ObjectsItem *m_universe;
-}
+};
 
 #endif // OBJECTSMODEL_H

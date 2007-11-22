@@ -38,6 +38,7 @@
 
 using namespace TPProto;
 
+void importObject(Object *object, ObjectsItem *imported);
 void importObject(Universe *object, ObjectsItem *imported);
 void importObject(Galaxy *object, ObjectsItem *imported);
 void importObject(StarSystem *object, ObjectsItem *imported);
