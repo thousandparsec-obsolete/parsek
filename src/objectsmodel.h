@@ -45,8 +45,7 @@ public:
     /** Sets up Universe data for the game @p game */
     void setUniverse(GameLayer *game);
     /** Adds object @p object with parent @p parent to the Universe tree */
-    template <typename T>
-    void addObject(GameLayer *game, T *object, ObjectsItem *parent = 0);
+    void addObject(GameLayer *game, Object *object, ObjectsItem *parent = 0);
     /** Returns model index for object at 
         row @p row, column @p column and with parent @p parent */
     QModelIndex index(int row, int column,

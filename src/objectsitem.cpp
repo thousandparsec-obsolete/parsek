@@ -47,7 +47,7 @@ int ObjectsItem::childrenCount() const
 
 int ObjectsItem::propertiesCount() const
 {
-    return m_properties.size();
+    return m_properties.size() + 5; // there are 5 common proprties
 }
 
 QVariant ObjectsItem::property(const QString &label) const

@@ -41,34 +41,37 @@ ObjectsModel::~ObjectsModel()
 void ObjectsModel::setUniverse(GameLayer *game)
 {
     delete m_universe;
-    addObject(game, game->getUniverse());
+    Object *tpuniverse = game->getUniverse();
+    ObjectsItem *universe = new ObjectsItem();
+    importObject(tpuniverse, universe);
+    foreach (unsigned int id, tpuniverse->getContainedObjectIds())
+    {
+        addObject(game, game->getObject(id), universe);
+    }
+    m_universe = universe;
+    delete tpuniverse;
     reset();
 }
 
-template <typename T>
-void ObjectsModel::addObject(GameLayer *game, T *object, ObjectsItem *parent)
+void ObjectsModel::addObject(GameLayer *game, Object *object, ObjectsItem *parent)
 {
     ObjectsItem *addedObject = new ObjectsItem(parent);
     importObject(object, addedObject);
-    if (addedObject->type() == ObjectsItem::Universe) m_universe = addedObject;
+    parent->appendChild(addedObject);
     foreach (unsigned int id, object->getContainedObjectIds())
     {
         addObject(game, game->getObject(id), addedObject);
     }
+    delete object;
 }
 
 QModelIndex ObjectsModel::index(int row, int column,
                                 const QModelIndex &parent) const
 {
-    if (!hasIndex(row, column, parent))
+    if (!m_universe)
         return QModelIndex();
 
-    ObjectsItem *parentItem;
-
-    if (!parent.isValid())
-        parentItem = m_universe;
-    else
-        parentItem = static_cast<ObjectsItem*>(parent.internalPointer());
+    ObjectsItem *parentItem = m_objectsItemFromIndex(parent);
 
     ObjectsItem *childItem = parentItem->child(row);
     if (childItem)
@@ -79,28 +82,27 @@ QModelIndex ObjectsModel::index(int row, int column,
 
 QModelIndex ObjectsModel::parent(const QModelIndex &index) const
 {
-    if (!index.isValid())
+    ObjectsItem *item = m_objectsItemFromIndex(index);
+    if (!item)
         return QModelIndex();
 
-    ObjectsItem *childItem = static_cast<ObjectsItem*>(index.internalPointer());
-    ObjectsItem *parentItem = childItem->parent();
-
-    if (parentItem == m_universe)
+    ObjectsItem *parentItem = item->parent();
+    if (!parentItem)
         return QModelIndex();
 
-    return createIndex(parentItem->row(), 0, parentItem);
+    ObjectsItem *grandParentItem = parentItem->parent();
+    if (!grandParentItem)
+        return QModelIndex();
+
+    int row = parentItem->row();
+    return createIndex(row, 0, parentItem);
 }
 
 int ObjectsModel::rowCount(const QModelIndex &parent) const
 {
-    ObjectsItem *parentItem;
-    if (parent.column() > 0)
+    ObjectsItem *parentItem = m_objectsItemFromIndex(parent);
+    if (!parentItem)
         return 0;
-
-    if (!parent.isValid())
-        parentItem = m_universe;
-    else
-        parentItem = static_cast<ObjectsItem*>(parent.internalPointer());
 
     return parentItem->childrenCount();
 }
@@ -109,10 +111,9 @@ int ObjectsModel::columnCount (const QModelIndex &parent) const
 {
     if (parent.isValid())
         return
-        static_cast<ObjectsItem*>(parent.internalPointer())->propertiesCount()
-        + 5; // 5 common properties in addition to special properties
+        static_cast<ObjectsItem*>(parent.internalPointer())->propertiesCount();
     else
-        return m_universe->propertiesCount() + 5;
+        return m_universe->propertiesCount();
 }
 
 QVariant ObjectsModel::data(const QModelIndex &index, int role) const

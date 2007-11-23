@@ -26,6 +26,7 @@
 #include <QLabel>
 #include <QTableView>
 #include <QTimer>
+#include <QTreeView>
 
 #include <kaction.h>
 #include <kicon.h>
@@ -43,6 +44,7 @@
 #include "mainwindow.h"
 #include "mainwindow.moc"
 #include "messagesmodel.h"
+#include "objectsmodel.h"
 #include "version.h"
 
 
@@ -98,19 +100,31 @@ void MainWindow::setupStatusBar()
 
 void MainWindow::setupDockWindows()
 {
+    ObjectsModel *objectsModel = new ObjectsModel();
+    objectsModel->setUniverse(game);
+    QTreeView *objectsTree = new QTreeView();
+    objectsTree->setModel(objectsModel);
+    QDockWidget *objectsDock = new QDockWidget(i18n("Objects Tree"), this);
+    objectsDock->setAllowedAreas(Qt::BottomDockWidgetArea
+                                 | Qt::TopDockWidgetArea);
+    objectsDock->setWidget(objectsTree);
+    addDockWidget(Qt::TopDockWidgetArea, objectsDock);
+
     MessagesModel *messagesModel = new MessagesModel();
     messagesModel->setMessages(game, messageBoard);
     QTableView *messagesView = new QTableView();
     messagesView->setModel(messagesModel);
     QDockWidget *messagesDock = new QDockWidget(i18n("Messages"), this);
-    messagesDock->setAllowedAreas(Qt::BottomDockWidgetArea | Qt::TopDockWidgetArea);
+    messagesDock->setAllowedAreas(Qt::BottomDockWidgetArea
+                                  | Qt::TopDockWidgetArea);
     messagesDock->setWidget(messagesView);
     addDockWidget(Qt::BottomDockWidgetArea, messagesDock);
 
     LoggerWidget *loggerWidget = new LoggerWidget();
     game->setLogger(loggerWidget);
     QDockWidget *loggerDock = new QDockWidget(i18n("Log"), this);
-    loggerDock->setAllowedAreas(Qt::BottomDockWidgetArea | Qt::TopDockWidgetArea);
+    loggerDock->setAllowedAreas(Qt::BottomDockWidgetArea
+                                | Qt::TopDockWidgetArea);
     loggerDock->setWidget(loggerWidget);
     addDockWidget(Qt::BottomDockWidgetArea, loggerDock);
 }
