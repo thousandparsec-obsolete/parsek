@@ -33,7 +33,7 @@ LoggerWidget::~LoggerWidget()
 {
 }
 
-void LoggerWidget::error(char* mesg, ...)
+void LoggerWidget::error(const char* mesg, ...)
 {
     QString message;
     va_list ap;
@@ -44,7 +44,7 @@ void LoggerWidget::error(char* mesg, ...)
     logView->append(fullmessage);
 }
 
-void LoggerWidget::warning(char* mesg, ...)
+void LoggerWidget::warning(const char* mesg, ...)
 {
     QString message;
     va_list ap;
@@ -55,7 +55,7 @@ void LoggerWidget::warning(char* mesg, ...)
     logView->append(fullmessage);
 }
 
-void LoggerWidget::info(char* mesg, ...)
+void LoggerWidget::info(const char* mesg, ...)
 {
     QString message;
     va_list ap;
@@ -66,7 +66,7 @@ void LoggerWidget::info(char* mesg, ...)
     logView->append(fullmessage);
 }
 
-void LoggerWidget::debug(char* mesg, ...)
+void LoggerWidget::debug(const char* mesg, ...)
 {
     QString message;
     va_list ap;
