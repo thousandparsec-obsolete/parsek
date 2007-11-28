@@ -1,5 +1,7 @@
 project( parsek )
 
+add_subdirectory( pics )
+
 set( CMAKE_MODULE_PATH 
      ${PROJECT_SOURCE_DIR}/cmake
      ${CMAKE_SOURCE_DIR}/cmake
