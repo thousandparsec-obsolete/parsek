@@ -1,0 +1,12 @@
+[Desktop Entry]
+Icon=parsek
+Name=Parsek
+Name[sl]=Parsek
+Exec=parsek
+Type=Application
+GenericName=Galactic Strategy Game
+GenericName[sl]=Galaktična strateška igra
+Terminal=false
+X-DocPath=parsek/index.html
+X-KDE-StartupNotify=true
+Categories=Qt;KDE;Game;StrategyGame;
