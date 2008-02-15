@@ -1,7 +1,5 @@
 project( parsek )
 
-add_subdirectory( pics )
-
 set( CMAKE_MODULE_PATH 
      ${PROJECT_SOURCE_DIR}/cmake
      ${CMAKE_SOURCE_DIR}/cmake
@@ -36,3 +34,5 @@ target_link_libraries( parsek ${KDE4_KDEUI_LIBS} ${TPPROTO_LIBRARY} )
 
 install( TARGETS parsek DESTINATION ${BIN_INSTALL_DIR} )
 install( FILES parsek.desktop  DESTINATION  ${XDG_APPS_INSTALL_DIR} )
+
+add_subdirectory( pics )
